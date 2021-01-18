@@ -14,34 +14,34 @@ import com.guzman.clientresource.services.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
-	
+
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<StandardError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request){
-	
+	public ResponseEntity<StandardError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request) {
+
 		HttpStatus status = HttpStatus.NOT_FOUND;
-		
+
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
 		err.setError(">>> [APPLICATION] Resource not found!");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
-		
+
 		return ResponseEntity.status(status.value()).body(err);
 	}
-	
+
 	@ExceptionHandler(MyDatabaseIntegrityException.class)
-	public ResponseEntity<StandardError> databaseIntegrity(MyDatabaseIntegrityException e, HttpServletRequest request){
-		
+	public ResponseEntity<StandardError> databaseIntegrity(MyDatabaseIntegrityException e, HttpServletRequest request) {
+
 		HttpStatus status = HttpStatus.BAD_REQUEST;
-		
+
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
 		err.setError(">>> [APPLICATION] Database integrity exception!");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
-		
+
 		return ResponseEntity.status(status.value()).body(err);
 	}
 

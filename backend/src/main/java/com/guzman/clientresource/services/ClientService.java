@@ -53,36 +53,36 @@ public class ClientService {
 	public ClientDTO update(Long id, ClientDTO dto) {
 
 		try {
-			
+
 			Client entity = repository.getOne(id);
 			copyDtoToEntity(dto, entity);
 			entity = repository.save(entity);
 			return new ClientDTO(entity);
-		
+
 		} catch (EntityNotFoundException e) {
-		
+
 			throw new ResourceNotFoundException(">>> [APPLICATION] ID not found! " + id);
 		}
 	}
-	
+
 	public void delete(Long id) {
-		
+
 		try {
 			repository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			
+
 			throw new ResourceNotFoundException(">>> [APPLICATION] ID not found! " + id);
-		
+
 			/*
 			 * Although there's not any N-N relation in this project yet, it seemed there
 			 * was no problem to anticipate future tasks and make this exception available
 			 * already.
 			 */
 		} catch (DataIntegrityViolationException e) {
-		
+
 			throw new MyDatabaseIntegrityException(">>> [APPLICATION] Data integrity violation!");
 		}
-		
+
 	}
 
 	// AUX METHODS
