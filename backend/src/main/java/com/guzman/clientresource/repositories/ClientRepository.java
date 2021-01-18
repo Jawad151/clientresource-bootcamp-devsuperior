@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.guzman.clientresource.entities.Client;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Integer> {
+public interface ClientRepository extends JpaRepository<Client, Long> {
 
 }
