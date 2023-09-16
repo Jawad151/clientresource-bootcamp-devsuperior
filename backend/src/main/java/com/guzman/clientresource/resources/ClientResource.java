@@ -72,4 +72,12 @@ public class ClientResource {
 		return ResponseEntity.noContent().build();
 	}
 
+	@DeleteMapping("/delete-all")
+	public String deleteall() {
+
+	service.deleteall();
+
+	return "ALL USERS HAVE BEEN DELETED";
+	}
+
 }
