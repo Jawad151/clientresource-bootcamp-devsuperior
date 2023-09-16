@@ -85,6 +85,12 @@ public class ClientService {
 
 	}
 
+
+	public  void deleteall()
+	{
+		repository.deleteall();
+	}
+
 	// AUX METHODS
 	private void copyDtoToEntity(ClientDTO dto, Client entity) {
 
